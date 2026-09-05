@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deutsch-Jozsa 與 Grover 量子演算法深度教學">
+  <title>Quantum Lab | 量子演算法</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="algorithms.html" aria-label="Quantum Lab 量子演算法首頁"><span class="brand-mark">Q</span><span><strong>QUANTUM</strong><small>LAB / ALGORITHMS</small></span></a>
+      <nav class="page-nav" aria-label="主要頁面"><a class="page-nav-link" href="index.html">✦ 理論探索</a><a class="page-nav-link" href="simulator.html">⚛ 量子模擬器</a><a class="page-nav-link active" href="algorithms.html">🧬 量子演算法</a></nav>
+      <div class="topbar-status"><span class="status-dot"></span>系統在線・演算法模式</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="開啟演算法目錄" aria-expanded="false">☰</button>
+    </header>
+    <div class="workspace" id="top">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-heading"><span>演算法路線</span><span class="chapter-count">04 CHAPTERS</span></div>
+        <nav class="chapter-nav" aria-label="演算法章節">
+          <a class="chapter-link active" href="#deutsch-jozsa"><span class="chapter-number">01</span><span><b>Deutsch-Jozsa</b><small>Constant or balanced?</small></span><span class="arrow">→</span></a>
+          <a class="chapter-link" href="#grover"><span class="chapter-number">02</span><span><b>Grover 搜尋</b><small>Unstructured search</small></span><span class="arrow">→</span></a>
+          <a class="chapter-link" href="#shor"><span class="chapter-number">03</span><span><b>Shor 因數分解</b><small>Break the lock</small></span><span class="arrow">→</span></a>
+          <a class="chapter-link" href="#algorithm-map"><span class="chapter-number">04</span><span><b>演算法地圖</b><small>Choose your next step</small></span><span class="arrow">→</span></a>
+        </nav>
+        <div class="progress-card"><div class="progress-label"><span>演算法進度</span><strong>75%</strong></div><div class="progress-track"><span style="width: 75%"></span></div><p>先理解疊加與干涉，再探索量子加速。</p></div>
+        <div class="sidebar-foot">Q-LAB / 2026<br><span>THINK IN SUPERPOSITION</span></div>
+      </aside>
+      <main class="main-content">
+        <div class="breadcrumb"><span>HOME</span><i>/</i><strong>ALGORITHM DECK</strong></div>
+        <section class="algorithm-hero"><div class="algorithm-hero-copy"><span class="eyebrow"><span class="pulse-line"></span> DEEP COMPUTING</span><h1>量子演算法<br><em>把可能性變成力量</em></h1><p>量子電腦不是把每一步都做得更快，而是利用疊加、相位與干涉，重新安排「哪些答案會被放大」。</p></div><div class="algorithm-orbit" aria-hidden="true"><span class="algo-orbit orbit-a"></span><span class="algo-orbit orbit-b"></span><span class="algo-core">∑</span><span class="algo-bit bit-a">0</span><span class="algo-bit bit-b">1</span></div></section>
+
+        <section class="algorithm-unit" id="deutsch-jozsa" aria-labelledby="djTitle">
+          <div class="unit-heading"><div><span class="eyebrow">ALGORITHM 01 / DECISION PROBLEM</span><h2 id="djTitle">Deutsch-Jozsa</h2><p class="unit-subtitle">決定性與平衡函數的躍升</p></div><span class="complexity-badge">1 QUERY</span></div>
+          <div class="algorithm-intro"><div><span class="intro-label">問題背景</span><h3>黑箱函數到底是哪一種？</h3><p>給定一個輸入為 $n$ 位元的黑箱函數 $f(x)$，我們保證它不是「常數函數」，就是「平衡函數」。常數函數對所有輸入都輸出相同結果；平衡函數則恰好一半輸出 0、一半輸出 1。</p></div><div class="complexity-compare"><div><small>傳統最壞情況</small><strong class="complexity-formula">\[2^{n-1}+1\]</strong><span>次查詢</span></div><div class="compare-arrow">→</div><div class="quantum-highlight"><small>Deutsch-Jozsa</small><strong>1</strong><span>次量子查詢</span></div></div></div>
+          <div class="step-grid">
+            <article class="algorithm-step"><div class="step-number">01</div><span class="step-tag">INITIALIZE</span><h3>準備兩條量子線</h3><p>輸入暫存器從全零開始，輸出位元準備成 $|1\rangle$：</p><div class="step-formula">\[ |0\rangle^{\otimes n}|1\rangle \]</div><p class="step-note">$\otimes n$ 表示 $n$ 個 $|0\rangle$ 的張量積。</p></article>
+            <article class="algorithm-step"><div class="step-number">02</div><span class="step-tag">SUPERPOSITION</span><h3>H 閘展開所有問題</h3><p>對每個位元施加 Hadamard，輸入同時走過全部 $2^n$ 條路徑：</p><div class="step-formula">\[ H^{\otimes n}|0\rangle^{\otimes n}=\frac{1}{\sqrt{2^n}}\sum_x|x\rangle \]</div><p class="step-note">每個輸入 $x$ 都以相同振幅出現。</p></article>
+            <article class="algorithm-step"><div class="step-number">03</div><span class="step-tag">ORACLE</span><h3>神諭造成相位回踢</h3><p>Oracle 計算 $f(x)$，輸出位元的相位把資訊「踢回」輸入狀態：</p><div class="step-formula">\[ U_f|x\rangle|{-}\rangle=(-1)^{f(x)}|x\rangle|{-}\rangle \]</div><p class="step-note">輸出 1 的路徑會多一個負號，形成干涉線索。</p></article>
+            <article class="algorithm-step"><div class="step-number">04</div><span class="step-tag">MEASURE</span><h3>H 閘後讀出答案</h3><p>再次施加 $H^{\otimes n}$，相位干涉會讓答案集中在 $|0\rangle^{\otimes n}$ 或其他狀態。</p><div class="step-formula">\[ f\text{ 常數}\Rightarrow 0^n\qquad f\text{ 平衡}\Rightarrow \text{不是 }0^n \]</div><p class="step-note">一次 Oracle 查詢，就能分辨兩類函數。</p></article>
+          </div>
+          <div class="algorithm-takeaway dj-takeaway"><span class="takeaway-mark">DJ</span><div><span class="eyebrow">WHY IT MATTERS</span><h3>量子優勢來自干涉，不只是「同時試很多次」。</h3><p>疊加產生所有路徑，Oracle 寫入相位，最後的 Hadamard 讓錯誤方向互相抵消、正確分類留下訊號。</p></div></div>
+        </section>
+
+        <section class="algorithm-unit grover-unit" id="grover" aria-labelledby="groverTitle">
+          <div class="unit-heading"><div><span class="eyebrow">ALGORITHM 02 / SEARCH PROBLEM</span><h2 id="groverTitle">Grover 搜尋</h2><p class="unit-subtitle">非結構化資料的平方根加速</p></div><span class="complexity-badge grover-badge">O(√N)</span></div>
+          <div class="algorithm-intro"><div><span class="intro-label">問題背景</span><h3>在一堆沒有線索的資料裡找目標</h3><p>若資料沒有排序或結構，傳統搜尋平均要檢查 $N/2$ 個項目。Grover 演算法用 Oracle 標記目標，再用平均值反轉放大它的振幅。</p></div><div class="complexity-compare"><div><small>傳統搜尋</small><strong>$O(N)$</strong><span>逐項檢查</span></div><div class="compare-arrow">→</div><div class="quantum-highlight grover-highlight"><small>Grover 搜尋</small><strong>$O(\sqrt{N})$</strong><span>量子迭代</span></div></div></div>
+          <div class="step-grid">
+            <article class="algorithm-step"><div class="step-number">01</div><span class="step-tag">PREPARE</span><h3>建立均勻疊加</h3><p>對 $n$ 個輸入位元施加 H 閘，讓每個資料索引都有相同機率：</p><div class="step-formula">\[ |s\rangle=\frac{1}{\sqrt{N}}\sum_{x=0}^{N-1}|x\rangle \]</div><p class="step-note">起點是整個搜尋空間的平均狀態。</p></article>
+            <article class="algorithm-step"><div class="step-number">02</div><span class="step-tag">ORACLE</span><h3>標記目標項</h3><p>Oracle 不直接告訴我們答案，而是只把目標態的振幅反相：</p><div class="step-formula">\[ |w\rangle\mapsto -|w\rangle \]</div><p class="step-note">這個負號就是接下來干涉的材料。</p></article>
+            <article class="algorithm-step"><div class="step-number">03</div><span class="step-tag">AMPLIFY</span><h3>平均值反轉放大</h3><p>Diffusion operator 以平均振幅為鏡面反射，讓目標振幅變大、其他振幅變小：</p><div class="step-formula">\[ D=2|s\rangle\langle s|-I \]</div><p class="step-note">Oracle + D 合稱一次 Grover 迭代。</p></article>
+            <article class="algorithm-step"><div class="step-number">04</div><span class="step-tag">ROTATION</span><h3>幾何旋轉後測量</h3><p>把狀態想成由「平均態」轉向「目標態」的平面旋轉：</p><div class="step-formula">\[ k\approx\frac{\pi}{4}\sqrt{N} \]</div><p class="step-note">做太多次反而會越過目標，迭代次數要剛剛好。</p></article>
+          </div>
+          <div class="algorithm-takeaway grover-takeaway"><span class="takeaway-mark">G</span><div><span class="eyebrow">GEOMETRIC INTUITION</span><h3>每次迭代都像把箭頭轉向答案。</h3><p>所有狀態其實可壓縮成「目標」與「非目標」兩個方向。Oracle 先翻面，Diffusion 再反射，合起來就是固定角度的旋轉。</p></div><div class="rotation-visual" aria-hidden="true"><span class="rotation-axis"></span><span class="rotation-arrow">↗</span><span class="rotation-target">TARGET</span></div></div>
+        </section>
+
+        <section class="algorithm-unit shor-unit" id="shor" aria-labelledby="shorTitle">
+          <div class="unit-heading"><div><span class="eyebrow">ALGORITHM 03 / NUMBER THEORY</span><h2 id="shorTitle">Shor 因數分解</h2><p class="unit-subtitle">把破解大數轉成尋找週期</p></div><span class="complexity-badge shor-badge">RSA THREAT</span></div>
+          <div class="algorithm-intro"><div><span class="intro-label">核心概念</span><h3>因數分解很難，但週期可能很有規律。</h3><p>Shor 的巧妙之處，是把「找出 $N$ 的質因數」改寫成「找出模冪函數的週期」。量子電腦用 QFT 讀出週期，再把週期轉回因數。</p></div><div class="complexity-compare"><div><small>傳統最佳已知方法</small><strong>次指數時間</strong><span>仍是超多項式</span></div><div class="compare-arrow">→</div><div class="quantum-highlight shor-highlight"><small>Shor 演算法</small><strong>多項式</strong><span>量子週期尋找</span></div></div></div>
+          <div class="shor-function-card"><span class="intro-label">週期尋找的主角</span><div class="shor-equation">\[ f(x)=a^x\pmod N \]</div><p>當 $a$ 與 $N$ 互質時，某個最小正整數 $r$ 會讓 $a^r\equiv1\pmod N$。這個 $r$ 就是函數重複的週期。</p><div class="period-example"><span>$N=15, a=2$</span><b>2, 4, 8, 1, 2, 4, 8, 1, ...</b><strong>因此 $r=4$</strong></div></div>
+          <div class="step-grid"><article class="algorithm-step"><div class="step-number">01</div><span class="step-tag">CLASSICAL SETUP</span><h3>先選數字，先做輾轉相除</h3><p>隨機選 $a$，其中 $1&lt;a&lt;N$，先算最大公因數：</p><div class="step-formula">\[ d=\gcd(a,N) \]</div><p class="step-note">若 $d&gt;1$，不用量子電腦就找到因數；若 $d=1$，繼續找週期。</p></article><article class="algorithm-step"><div class="step-number">02</div><span class="step-tag">MODULAR ARITHMETIC</span><h3>建立模冪函數</h3><p>觀察指數 $x$ 變化時的輸出，函數會因模 $N$ 而循環：</p><div class="step-formula">\[ f(x)=a^x\bmod N \]</div><p class="step-note">這把數論問題轉成找出重複間隔。</p></article><article class="algorithm-step"><div class="step-number">03</div><span class="step-tag">QFT</span><h3>用量子傅立葉變換找週期</h3><p>QFT 把週期波形轉成頻率峰值，從測量結果推回 $r$：</p><div class="step-formula">\[ \mathrm{QFT}_M|x\rangle=\frac{1}{\sqrt M}\sum_{y=0}^{M-1}e^{2\pi ixy/M}|y\rangle \]</div><p class="step-note">白話：QFT 像量子頻譜分析儀，找出資料裡的節奏。</p></article><article class="algorithm-step"><div class="step-number">04</div><span class="step-tag">FACTOR</span><h3>週期轉回因數</h3><p>若 $r$ 是偶數，計算兩個最大公因數：</p><div class="step-formula">\[ p=\gcd(a^{r/2}-1,N),\quad q=\gcd(a^{r/2}+1,N) \]</div><p class="step-note">$N=15,a=2,r=4$ 時，可得到 $\gcd(3,15)=3$ 與 $\gcd(5,15)=5$。</p></article></div>
+          <div class="algorithm-takeaway shor-takeaway"><span class="takeaway-mark">S</span><div><span class="eyebrow">CRYPTOGRAPHY CONNECTION</span><h3>為什麼這會威脅 RSA？</h3><p>RSA 的安全性依賴大數因數分解很難。Shor 能有效率地找週期，進而取得因數，因此未來需要後量子密碼學。</p></div></div>
+        </section>
+
+        <section class="algorithm-map" id="algorithm-map"><div><span class="eyebrow">NEXT MISSION</span><h2>你的下一個量子問題</h2><p>Deutsch-Jozsa 教你讀懂相位，Grover 教你放大答案，Shor 則把週期變成因數。接下來可以用模擬器親手排列 H 與 CNOT。</p><button class="suggestion algorithm-question" data-question="為什麼 Shor 演算法會威脅 RSA 密碼？">問小幫手：為什麼 Shor 演算法會威脅 RSA？</button></div><a class="primary-button" href="simulator.html">前往量子模擬器 <span>↗</span></a></section>
+      </main>
+      <aside class="assistant-panel" aria-label="AI 知識小幫手"><div class="assistant-header"><div class="assistant-avatar">✦</div><div><span class="eyebrow">ALGORITHM AI</span><h2>知識小幫手</h2></div><span class="online-dot"></span></div><div class="assistant-intro"><p>想知道哪個步驟最關鍵？問我吧。</p><div class="suggestions"><button class="suggestion" data-question="Grover 為什麼是平方根加速？">Grover 加速</button><button class="suggestion" data-question="什麼是相位回踢？">相位回踢</button></div></div><div class="chat-messages" id="chatMessages"><div class="message bot-message"><span class="message-avatar">Q</span><p>量子演算法的祕密，藏在干涉裡。</p></div></div><form class="chat-form" id="chatForm"><input id="chatInput" type="text" placeholder="輸入你的問題..." autocomplete="off" aria-label="輸入問題"><button type="submit" aria-label="送出問題">↑</button></form><div class="assistant-note">AI 回答僅供學習參考・保持好奇</div></aside>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="quantum-core.js"></script>
+  <script src="theory.js"></script>
+</body>
+</html>
