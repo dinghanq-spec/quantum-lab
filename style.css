@@ -1,3 +1,28 @@
+/* 10. Quiz engine */
+.quiz-section { padding-top: var(--space-6); }
+.quiz-engine-card { border-color: rgba(92,225,230,.45); background: linear-gradient(135deg, rgba(24,59,74,.42), rgba(13,27,42,.94)); }
+.quiz-kicker { color: var(--cyan); font: 600 10px var(--display-font); letter-spacing: .14em; }
+.quiz-status { margin: -10px 0 20px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.quiz-form { display: grid; gap: 14px; }
+.quiz-question { min-width: 0; margin: 0; padding: 18px; border: 1px solid var(--line); background: rgba(7,18,28,.55); }
+.quiz-question legend { width: 100%; padding: 0; display: flex; gap: 12px; color: var(--text); font-size: 14px; font-weight: 700; line-height: 1.7; }
+.quiz-question-number { flex: 0 0 auto; color: var(--cyan); font: 700 16px var(--display-font); }
+.quiz-category { margin: 7px 0 13px 31px; color: var(--muted); font: 10px var(--display-font); letter-spacing: .08em; }
+.quiz-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-left: 31px; }
+.quiz-option { display: flex; min-height: 44px; align-items: center; gap: 9px; padding: 10px 12px; color: var(--muted); border: 1px solid var(--line); background: rgba(18,37,58,.55); font-size: 12px; line-height: 1.55; cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+.quiz-option:hover, .quiz-option:has(input:checked) { color: var(--text); border-color: var(--cyan); background: rgba(92,225,230,.1); }
+.quiz-option input { accent-color: var(--cyan); }
+.quiz-option.is-answer { border-color: var(--lime); }
+.quiz-option.is-correct { color: var(--bg); border-color: var(--lime); background: var(--lime); }
+.quiz-option.is-wrong { color: var(--text); border-color: var(--orange); background: rgba(255,173,102,.18); }
+.quiz-explanation { margin: 13px 0 0 31px; padding: 12px 14px; color: var(--muted); border-left: 2px solid var(--cyan); background: rgba(92,225,230,.07); font-size: 12px; line-height: 1.8; }
+.quiz-explanation strong { color: var(--lime); }
+.quiz-explanation p { margin: 3px 0 0; }
+.quiz-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; }
+.quiz-actions button { min-height: 46px; }
+.quiz-actions .secondary-button { margin: 0; }
+.quiz-actions button:disabled { cursor: not-allowed; opacity: .45; }
+@media (max-width: 720px) { .quiz-options { grid-template-columns: 1fr; margin-left: 0; }.quiz-category, .quiz-explanation { margin-left: 0; }.quiz-question legend { font-size: 13px; }.quiz-actions { align-items: stretch; flex-direction: column-reverse; }.quiz-actions button { width: 100%; } }
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
 
 /* 01. Design tokens */

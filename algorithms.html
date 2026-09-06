@@ -21,12 +21,13 @@
     </header>
     <div class="workspace" id="top">
       <aside class="sidebar" id="sidebar">
-        <div class="sidebar-heading"><span>演算法路線</span><span class="chapter-count">04 CHAPTERS</span></div>
+        <div class="sidebar-heading"><span>演算法路線</span><span class="chapter-count">05 CHAPTERS</span></div>
         <nav class="chapter-nav" aria-label="演算法章節">
           <a class="chapter-link active" href="#deutsch-jozsa"><span class="chapter-number">01</span><span><b>Deutsch-Jozsa</b><small>Constant or balanced?</small></span><span class="arrow">→</span></a>
           <a class="chapter-link" href="#grover"><span class="chapter-number">02</span><span><b>Grover 搜尋</b><small>Unstructured search</small></span><span class="arrow">→</span></a>
           <a class="chapter-link" href="#shor"><span class="chapter-number">03</span><span><b>Shor 因數分解</b><small>Break the lock</small></span><span class="arrow">→</span></a>
-          <a class="chapter-link" href="#algorithm-map"><span class="chapter-number">04</span><span><b>演算法地圖</b><small>Choose your next step</small></span><span class="arrow">→</span></a>
+          <a class="chapter-link" href="#quiz"><span class="chapter-number">04</span><span><b>題庫挑戰</b><small>Test your intuition</small></span><span class="arrow">→</span></a>
+          <a class="chapter-link" href="#algorithm-map"><span class="chapter-number">05</span><span><b>演算法地圖</b><small>Choose your next step</small></span><span class="arrow">→</span></a>
         </nav>
         <div class="progress-card"><div class="progress-label"><span>演算法進度</span><strong>75%</strong></div><div class="progress-track"><span style="width: 75%"></span></div><p>先理解疊加與干涉，再探索量子加速。</p></div>
         <div class="sidebar-foot">Q-LAB / 2026<br><span>THINK IN SUPERPOSITION</span></div>
@@ -67,6 +68,25 @@
           <div class="algorithm-takeaway shor-takeaway"><span class="takeaway-mark">S</span><div><span class="eyebrow">CRYPTOGRAPHY CONNECTION</span><h3>為什麼這會威脅 RSA？</h3><p>RSA 的安全性依賴大數因數分解很難。Shor 能有效率地找週期，進而取得因數，因此未來需要後量子密碼學。</p></div></div>
         </section>
 
+        <section class="quiz-section" id="quiz" aria-labelledby="quizTitle">
+          <div class="section-title">
+            <div><span class="eyebrow">QUANTUM CHALLENGE / 50 QUESTIONS</span><h2 id="quizTitle">測驗你的量子直覺</h2></div>
+            <span class="section-index" id="quizProgress">0 / 50 題已抽取</span>
+          </div>
+          <div class="quiz-card quiz-engine-card">
+            <div class="quiz-heading">
+              <div><span class="quiz-kicker">RANDOMIZED KNOWLEDGE CHECK</span><h3>每回合 5 道不重複題目</h3></div>
+              <strong class="quiz-score" id="quizScore">尚未提交</strong>
+            </div>
+            <p class="quiz-status" id="quizStatus" aria-live="polite">正在準備題庫...</p>
+            <form id="quizForm" class="quiz-form"></form>
+            <div class="quiz-actions">
+              <button class="secondary-button" id="refreshQuizButton" type="button"><span aria-hidden="true">↻</span>刷新題目</button>
+              <button class="primary-button" id="submitQuizButton" type="button">提交答案 <span>↗</span></button>
+            </div>
+          </div>
+        </section>
+
         <section class="algorithm-map" id="algorithm-map"><div><span class="eyebrow">NEXT MISSION</span><h2>你的下一個量子問題</h2><p>Deutsch-Jozsa 教你讀懂相位，Grover 教你放大答案，Shor 則把週期變成因數。接下來可以用模擬器親手排列 H 與 CNOT。</p><button class="suggestion algorithm-question" data-question="為什麼 Shor 演算法會威脅 RSA 密碼？">問小幫手：為什麼 Shor 演算法會威脅 RSA？</button></div><a class="primary-button" href="simulator.html">前往量子模擬器 <span>↗</span></a></section>
       </main>
       <aside class="assistant-panel" aria-label="AI 知識小幫手"><div class="assistant-header"><div class="assistant-avatar">✦</div><div><span class="eyebrow">ALGORITHM AI</span><h2>知識小幫手</h2></div><span class="online-dot"></span></div><div class="assistant-intro"><p>想知道哪個步驟最關鍵？問我吧。</p><div class="suggestions"><button class="suggestion" data-question="Grover 為什麼是平方根加速？">Grover 加速</button><button class="suggestion" data-question="什麼是相位回踢？">相位回踢</button></div></div><div class="chat-messages" id="chatMessages"><div class="message bot-message"><span class="message-avatar">Q</span><p>量子演算法的祕密，藏在干涉裡。</p></div></div><form class="chat-form" id="chatForm"><input id="chatInput" type="text" placeholder="輸入你的問題..." autocomplete="off" aria-label="輸入問題"><button type="submit" aria-label="送出問題">↑</button></form><div class="assistant-note">AI 回答僅供學習參考・保持好奇</div></aside>
@@ -76,5 +96,6 @@
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
   <script src="quantum-core.js"></script>
   <script src="theory.js"></script>
+  <script type="module" src="quiz-engine.js"></script>
 </body>
 </html>
